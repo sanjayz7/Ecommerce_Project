@@ -1,13 +1,19 @@
 import { Header } from '../components/Header';
 import './HomePage.css';
 import axios from 'axios';
-import { products } from '../../starting-code/data/products';
+import { useState, useEffect } from 'react';
+
 export function HomePage() {
+  const [products,setProducts]= useState ([]); 
+  useEffect(()=>{
+
   axios.get('https://localhost:3000/api/products')
   .then((response)=>{
-    console.log(response.data);
+    setProducts(response.data);
   });
-
+},[]);
+//useEffect =let us control when  some code runs 
+//Dependency array =[] means run once when component loads(lets is control whem useEffect runs)
   return (
     <>
       <title>Ecommerce Project</title>
