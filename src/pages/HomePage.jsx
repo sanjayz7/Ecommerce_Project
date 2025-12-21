@@ -6,9 +6,9 @@ import { formatMoney } from '../utils/money';
 
 
 //import {products as productsData} from '../../starting-code/data/products';
-export function HomePage() {
+export function HomePage({cart}) {
  const [products,setProducts]= useState ([]); 
- const [cart,setCartItems]= useState ([]);
+
   useEffect(()=>{
 
   axios.get('api/products')
@@ -16,10 +16,7 @@ export function HomePage() {
     setProducts(response.data);
    });
     
-    axios.get('api/cart-items').then((response)=>{
-    setCartItems(response.data);
-    console.log('Cart items fetched');
-  });
+ 
 
   
  
