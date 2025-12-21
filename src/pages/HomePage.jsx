@@ -6,14 +6,22 @@ import { formatMoney } from '../utils/money';
 
 
 //import {products as productsData} from '../../starting-code/data/products';
-export function HomePage({cart}) {
+export function HomePage() {
  const [products,setProducts]= useState ([]); 
+ const [cart,setCartItems]= useState ([]);
   useEffect(()=>{
 
-  axios.get('http://localhost:3000/api/products')
+  axios.get('api/products')
   .then((response)=>{
     setProducts(response.data);
+   });
+    
+    axios.get('api/cart-items').then((response)=>{
+    setCartItems(response.data);
+    console.log('Cart items fetched');
   });
+
+  
  
 },[]);
 //useEffect =let us control when  some code runs 
