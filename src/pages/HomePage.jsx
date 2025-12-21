@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 import { formatMoney } from '../utils/money';
 
 
-import {products as productsData} from '../../starting-code/data/products';
+//import {products as productsData} from '../../starting-code/data/products';
 export function HomePage({cart}) {
- const [products,setProducts]= useState (productsData); 
+ const [products,setProducts]= useState ([]); 
   useEffect(()=>{
 
-  axios.get('/api/products')
+  axios.get('http://localhost:3000/api/products')
   .then((response)=>{
     setProducts(response.data);
   });
@@ -18,6 +18,22 @@ export function HomePage({cart}) {
 },[]);
 //useEffect =let us control when  some code runs 
 //Dependency array =[] means run once when component loads(lets is control when useEffect runs)
+
+
+// Aysnc code = code that does not finish right aaway (like fetching data from an API)
+
+//fetch() returns promise
+//Promise lets use wait for async code to finish before running some code
+
+//.then() runs when promise is resolved (when async code is finished)
+
+//async await = alternative way of writing promises
+
+//await = pause execution until the promise resolves
+
+//.json()= gives us the data from the response
+
+//Axios = library that makes it easy to make HTTP requests
   return (
     <>
       <title>Ecommerce Project</title>
